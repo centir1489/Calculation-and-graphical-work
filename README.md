@@ -1,13 +1,20 @@
+# Расчетно-графическая работа
+**Методы шифрования**
+1. _Шифр A1Z26_
+2. _Шифр Вернама_
+3. _Шифр двойная табличная перестановка_
+
+# Модули программы 
 **Основные модули программы:**
 + `main.cpp` – ***содержит функцию main(), и весь описанный выше функционал программы.***
 + `Switch.cpp` – ***Модуль, содержащий конструкции Switch case, на которых строиться работа всей программы, можно сказать является мостом между всеми модулями и главным файлом main.***    
 	+ `SwitchCryptA1Z26(int8_t ChoiceCrypt, pair<string, string> &PairKeyMess)` - **в функции содержится `Switch`, который при заданном параметре *ChoiceCrypt*,  шифрует или дешифрует сообщение методом A1Z26.**
 	+ `SwitchCryptVernam(int8_t ChoiceCrypt, pair<string, string> &PairKeyMess)` -**в функции содержится `Switch`, который при заданном параметре *ChoiceCrypt*,  шифрует или дешифрует сообщение, методом Вернама.**
 	+ `SwitchCryptDoubleTablPer(int8_t ChoiceCrypt, pair<string, string> &PairKeyMess)` - **в функции содержится `Switch`, который при заданном параметре *ChoiceCrypt*,  шифрует или дешифрует сообщение, методом двойной табличной перестановки.**
-	+ `SwitchCipherKey(int8_t ChoiceCiphers, pair<string, string> &PairKeyMess)` - **в функции содержится `Switch`, который при заданном параметре *ChoiceCipher*, генерирует ключ для выбранного метода шифрования.
-	+ `SwitchWork(int8_t ChoiceWork, int8_t ChoiceCrypt, pair<string, string> &PairKeyMess)` - **в функции содержится двойной `Switch`, который при заданных параметрах *ChoiceWork* и *ChoiceCrypt*, позволяет выбрать место считывания сообщения (консоль или файл), при шифровании сообщения запросит ключ для шифрования сообщения. 
+	+ `SwitchCipherKey(int8_t ChoiceCiphers, pair<string, string> &PairKeyMess)` - **в функции содержится `Switch`, который при заданном параметре *ChoiceCipher*, генерирует ключ для выбранного метода шифрования.**
+	+ `SwitchWork(int8_t ChoiceWork, int8_t ChoiceCrypt, pair<string, string> &PairKeyMess)` - **в функции содержится двойной `Switch`, который при заданных параметрах *ChoiceWork* и *ChoiceCrypt*, позволяет выбрать место считывания сообщения (консоль или файл), при шифровании сообщения запросит ключ для шифрования сообщения.** 
 	+ `SwitchCiphers(int8_t ChoiceCiphers, int8_t ChoiceCrypt, pair<string, string> &PairKeyMess)` -  **в функции содержится `Switch`, который при заданных параметрах *ChoiceCiphers* и *ChoiceCrypt*, запускает функцию шифра, который либо шифрует, либо дешефрует сообщение.**
-	+ `OutSwitchWork(int8_t FinalChoiceWork, pair<string, string> PairKeyMess)` - **в функции содержится `Switch`, который при заданном параметре *FinalChoiceWork*, выводит результат, т.е. выводит результат программы в `Terminal` или записывает его в файл.
+	+ `OutSwitchWork(int8_t FinalChoiceWork, pair<string, string> PairKeyMess)` - **в функции содержится `Switch`, который при заданном параметре *FinalChoiceWork*, выводит результат, т.е. выводит результат программы в `Terminal` или записывает его в файл.**
 + `Choices.cpp` – ***Модуль, содержащий выборы программы, такие как выбор шифровки или дешифровки, выбор считывания и записи файла.***
 	+ `UserSelect(string UserChoice, size_t LimitChoice)` - **функция выбора, применяется во всех функция `Choice`, принимает выбор пользователя в виде строки номером, при не соответствии с лимитом выдаёт ошибку.** 
 	+ `ChoiceCrypt(string UserChoice)` - **функция выбора действия, возможные действия: *Зашифровать / Расшифровать сообщение*.**
