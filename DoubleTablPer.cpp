@@ -90,7 +90,6 @@ vector<vector<char>> CreateTabloRow(string Message){
     vector<vector<char>> TabloSumbolsRow;
     size_t SizeRow = size_t(sqrt(Message.length()));
     
-
     vector<char> BuffRow;
     for(size_t p = 0; p < Message.length(); p++){
         if(p != 0 && p % SizeRow == 0){
@@ -117,7 +116,7 @@ vector<vector<char>> CreateTabloColumn(string Message){
 }
 
 vector<vector<char>> EncFirstMixTablo(string Message, vector<size_t> FirstKey){
-    vector<vector<char>> Tablo = CreateTabloColumn(Message);
+    vector<vector<char>> Tablo = CreateTabloRow(Message);
     
     vector<vector<char>> NewTablo = Tablo;
     for(size_t p = 0; p < FirstKey.size(); p++){
@@ -127,7 +126,7 @@ vector<vector<char>> EncFirstMixTablo(string Message, vector<size_t> FirstKey){
 }
 
 vector<vector<char>> EncSecondMixTablo(string Message, vector<size_t> SecondKey){
-    vector<vector<char>> Tablo = CreateTabloRow(Message);
+    vector<vector<char>> Tablo = CreateTabloColumn(Message);
 
     vector<vector<char>> NewTablo = Tablo;
     for(size_t p = 0; p < SecondKey.size(); p++){
@@ -137,7 +136,7 @@ vector<vector<char>> EncSecondMixTablo(string Message, vector<size_t> SecondKey)
 }
 
 vector<vector<char>> DecFirstMixTablo(string Message, vector<size_t> FirstKey){
-    vector<vector<char>> Tablo = CreateTabloColumn(Message);
+    vector<vector<char>> Tablo = CreateTabloRow(Message);
 
     vector<vector<char>> NewTablo = Tablo;
     for(size_t p = 0; p < FirstKey.size(); p++){
@@ -147,7 +146,7 @@ vector<vector<char>> DecFirstMixTablo(string Message, vector<size_t> FirstKey){
 }
 
 vector<vector<char>> DecSecondMixTablo(string Message, vector<size_t> SecondKey){
-    vector<vector<char>> Tablo = CreateTabloRow(Message);
+    vector<vector<char>> Tablo = CreateTabloColumn(Message);
     
     vector<vector<char>> NewTablo = Tablo;
     for(size_t p = 0; p < SecondKey.size(); p++){
@@ -161,10 +160,10 @@ string EncryptMessageDP(string Message, pair<vector<size_t>, vector<size_t>> Pai
     size_t Border = Message.length();
     
     Encrypt = EncFirstMixTablo(Message, PairKeys.first);
-    Message = ReversTabloToStr(Encrypt, Border);
+    Message = TabloToStr(Encrypt, Border);
 
     Encrypt = EncSecondMixTablo(Message, PairKeys.second);
-    Message = TabloToStr(Encrypt, Border);
+    Message = ReversTabloToStr(Encrypt, Border);
 
     return Message;
 }   
@@ -173,12 +172,11 @@ string DecryptMessageDP(string Message, pair<vector<size_t>, vector<size_t>> Pai
     vector<vector<char>> Decrypt;
     size_t Border = Message.length();
 
-    Decrypt = DecSecondMixTablo(Message, PairKeys.second);
-    Message = TabloToStr(Decrypt, Border);
-
     Decrypt = DecFirstMixTablo(Message, PairKeys.first);
-    Message = ReversTabloToStr(Decrypt, Border);
+    Message = TabloToStr(Decrypt, Border);
     
+    Decrypt = DecSecondMixTablo(Message, PairKeys.second);
+    Message = ReversTabloToStr(Decrypt, Border);
     return Message;
 }
 
